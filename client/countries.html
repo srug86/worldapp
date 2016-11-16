@@ -1,0 +1,70 @@
+<template name="countries">
+    <div class="container">
+        <h1>Europe countries</h1>
+        <div class="row">
+            <div class="col-md-6">
+                {{> countries_controls}}
+                {{> countries_feature_list}}
+            </div>
+            <div class="col-md-6">
+                {{> countries_vizjs}}
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="countries_controls">
+    <form>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title"><b>Features:</b></h3>
+            </div>
+            <div class="panel-body">
+                <dl>
+	                <dt>Population:</dt><dd>Population of the country.</dd>
+	                <dt>HDI (Human Development Index):</dt><dd>Composite statistic of life expectancy, education, and income per capita indicators, which are used to rank countries into four tiers of human development.</dd>
+	                <dt>GPD (Gross domestic product):</dt><dd>Monetary measure of the market value of all final goods and services produced in a period (quarterly or yearly).</dd>
+	            </dl>
+            </div>
+        </div>
+	    <b>Select a country feature:</b>
+	    <br/>
+	    <select class="js-select-single-feature">
+		    {{#each get_feature_names}}
+		    <option value="{{name}}">{{name}}</option>
+		    {{/each}}
+	    </select>
+    </form>
+</template>
+
+<template name="countries_feature_list">
+	<ul>
+	{{#each get_all_feature_values}}
+		<li>{{name}}: {{value}}</li>
+	{{/each}}
+	</ul>
+</template>
+
+<template name="countries_vizjs">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title"><b>Views:</b></h3>
+        </div>
+        <div class="panel-body">
+            <dl>
+                <dt>Network:</dt><dd>The size of the "node-flag" represents the value of the selected feature of each country.</dd>
+                <dt>Timeline:</dt><dd>The label with the name of the country and the value of the selected feature is situated over the date of independence of each country.</dd>
+                <dt>Graph2D:</dt><dd>It represents the value of the selected feature (Y axis) for each of the countries on the list (X axis).</dd>
+            </dl>
+        </div>
+    </div>
+    <b>Select a visualisation for the feature:</b>
+    <br/>
+    <form>
+        <button class="btn btn-info js-show-graphic1"><b>Network</b></button>
+        <button class="btn btn-info js-show-graphic2"><b>Timeline</b></button>
+        <button class="btn btn-info js-show-graphic3"><b>Graph2D</b></button>
+    </form>
+    <br/>
+    <div id="visjs"></div>
+</template>
